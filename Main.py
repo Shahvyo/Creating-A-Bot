@@ -68,14 +68,6 @@ async def userinfo(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-
-
-
-	
-
-
-
-
 @client.command()
 async def kick(ctx, member: discord.Member=None, *, reason=None):
 	await member.kick(reason=reason)
