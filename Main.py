@@ -22,6 +22,12 @@ async def purge(ctx, amount=5):
 	await ctx.send("**Successfully deleted ** `{}` **messages!**".format(len(deleted) - 1))
 
 @client.command()
+async def setnick(ctx, member: discord.Member, nick):
+	await member.edit(nick=nick)
+	await ctx.send(f"Nickname was changed for {member.mention}")
+
+
+@client.command()
 async def hug(ctx, *, member):
 	author_name = ctx.message.author.name
 	await ctx.send(f"{author_name} has hugged! {member}")
