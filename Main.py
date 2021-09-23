@@ -116,7 +116,7 @@ async def mute(ctx, member: discord.Member=None):
 @client.command()
 async def unmute(ctx, member: discord.Member=None):
  	if member == None:
- 		await ctx.send("⚠Please mention a user to unmute!")
+ 		await ctx.send("⚠ Please mention a user to unmute!")
  		return
 
  	guild = ctx.guild
@@ -138,7 +138,7 @@ async def ping(ctx):
 @client.command()
 async def slowmode(ctx, time: typing.Union[int, str, None]):
 	if time == None:
-		await ctx.send("⚠Please provide time")
+		await ctx.send("⚠ Please provide time")
 		return
 	if time == 0:
 		await ctx.send("Slowmode off, It'll be better if you do `slowmode off`")
