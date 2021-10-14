@@ -1,6 +1,8 @@
 from os import name
+import os
 import discord
 from discord import colour
+from discord import voice_client
 from discord.ext import commands
 from discord import client
 from discord import member
@@ -10,7 +12,7 @@ intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
-client = commands.Bot(command_prefix = "?", intents=intents)
+client = commands.Bot(command_prefix = "?", intents=intents, help_command=None)
 @client.event
 async def on_ready():
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Over The Boys"))
@@ -132,8 +134,26 @@ async def say(ctx, *, text):
 	await ctx.send(f"{text}")
 
 @client.command()
-async def ping(ctx):
-    await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
+async def join(ctx):
+    await ctx.author.voice.channel.connect()
+    await ctx.send('Joined your voice channel.')
+
+@client.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
+    await ctx.send('Left your voice channel.')
+
+@client.command(name='help')
+async def help(ctx):
+    embed = discord.Embed(
+        title = 'Help',
+        description = 'Help For You',
+        color = discord.Color.red()
+    )
+    embed.set_footer(text=f'Requested by - {ctx.author}', icon_url=ctx.author.avatar_url)
+    embed.add_field(name='General', value='`credits`')
+    embed.add_field(name='Moderation', value='`Say`, `Dm`, `Kick`, `Ban`, `Unban`, `Mute`, `Unmute`, `Warn`, `Purge`, `Nick`', inline=False)
+    await ctx.send (embed = embed)
 
 @client.command()
 async def slowmode(ctx, time: typing.Union[int, str, None]):
