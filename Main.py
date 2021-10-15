@@ -81,6 +81,7 @@ async def kick(ctx, member: discord.Member=None, *, reason=None):
 	await member.kick(reason=reason)
 	await ctx.send(f"✅ {member} has been kicked!\n**Reason:** {reason}")
 
+
 @client.command()
 async def ban(ctx, member: discord.Member=None, *, reason=None):
 	await member.ban(reason=reason)
@@ -101,7 +102,7 @@ async def unban(ctx, id:typing.Union[int, None]):
 @client.command()
 async def mute(ctx, member: discord.Member=None):
 	if member == None:
-		await ctx.send("⚠Please mention a user to mute")
+		await ctx.send("⚠Please mention a user to mute!")
 		return
 
 	guild = ctx.guild
@@ -147,7 +148,7 @@ async def leave(ctx):
 async def help(ctx):
     embed = discord.Embed(
         title = 'Help',
-        description = 'Help For You',
+        description = 'Help For You!',
         color = discord.Color.red()
     )
     embed.set_footer(text=f'Requested by - {ctx.author}', icon_url=ctx.author.avatar_url)
