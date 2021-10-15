@@ -15,7 +15,7 @@ intents.presences = True
 client = commands.Bot(command_prefix = "?", intents=intents, help_command=None)
 @client.event
 async def on_ready():
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Over The Boys"))
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="Over The Boys"))
 	print(f'{client.user} is ready!')
 
 @client.command()
